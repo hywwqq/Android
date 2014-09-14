@@ -40,8 +40,8 @@ typedef struct DataNode
 /* Create a Linklist */
 tDataNode *CreateLintlist()
 {
-	tDataNode *phead = NULL;
-	phead = (tDataNode *)malloc(sizeof(tDataNode));
+    tDataNode *phead = NULL;
+    phead = (tDataNode *)malloc(sizeof(tDataNode));
     phead->next = NULL;
     return phead;
 }
@@ -49,24 +49,24 @@ tDataNode *CreateLintlist()
 /* menu program */
 static tDataNode data[] =
 {
-	{ "help", "This is help cmd!", NULL },
-	{ "version", "program version is v1.0.", NULL},
-	{ "exit", "the program will exit!", NULL}
+    { "help", "This is help cmd!", NULL },
+    { "version", "program version is v1.0.", NULL},
+    { "exit", "the program will exit!", NULL}
 };
 
 /* Initialize the Linklist and return the datanode pointer*/
 tDataNode *Initialization(tDataNode *phead)
 {
-	int i;
-	tDataNode *p = NULL;
-	tDataNode *q = NULL;
-	p = (tDataNode *)malloc(sizeof(tDataNode));
+    int i;
+    tDataNode *p = NULL;
+    tDataNode *q = NULL;
+    p = (tDataNode *)malloc(sizeof(tDataNode));
     p = phead;
     for (i=0; i < CMD_NUM; i++)
     {
-    	q = (tDataNode*)malloc(sizeof(tDataNode));
-    	strcpy(q->cmd,data[i].cmd);
-    	strcpy(q->desc,data[i].desc);
+        q = (tDataNode*)malloc(sizeof(tDataNode));
+        strcpy(q->cmd,data[i].cmd);
+        strcpy(q->desc,data[i].desc);
         p->next = q;
         p = q;
     }
@@ -76,7 +76,7 @@ tDataNode *Initialization(tDataNode *phead)
 /* Show the Linklist*/
 void ShowAllCmd(tDataNode *phead)
 {
-	printf("Menu List:\n");
+    printf("Menu List:\n");
     tDataNode *p = phead->next;
     while(p != NULL)
     {
@@ -89,9 +89,9 @@ void ShowAllCmd(tDataNode *phead)
 /* Find the cmd in Linklist and return the datanode pointer*/
 void FindCmd(tDataNode *phead)
 {
-	while(1)
+    while(1)
     {
-    	int flag = FALSE;
+        int flag = FALSE;
         char pcmd[CMD_LEN];
         printf("Input a cmd instruction > ");
         scanf("%s", pcmd);
@@ -101,15 +101,15 @@ void FindCmd(tDataNode *phead)
         {
             if(!strcmp(pcmd, p->cmd))
             {
-            	flag = TRUE;
+                flag = TRUE;
                 printf("%s\n", p->desc);
                 if(!strcmp(pcmd, "help"))
                 {
-                	ShowAllCmd(phead);
+                    ShowAllCmd(phead);
                 }
                 if(!strcmp(pcmd, "exit"))
                 {
-                	return ;
+                    return ;
                 }
                 break;
             }
@@ -117,15 +117,15 @@ void FindCmd(tDataNode *phead)
         }
         if (!flag)
         {
-        	printf("Wrong instruction!\n");
+            printf("Wrong instruction!\n");
         }
     }
 }
 
 int main()
 {
-	/* program begin*/
-	tDataNode *head = NULL;
+    /* program begin*/
+    tDataNode *head = NULL;
     head = CreateLintlist();
     Initialization(head);
     FindCmd(head);
