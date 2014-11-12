@@ -105,6 +105,75 @@ Rectangle {
         }
 
         Button {
+            text: "柔化";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Soften);
+            }
+        }
+
+        Button {
+            text: "灰度";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Gray);
+            }
+        }
+
+        Button {
+            text: "浮雕";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Emboss);
+            }
+        }
+        Button {
+            text: "黑白";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Binarize);
+            }
+        }
+
+        Button {
+            text: "底片";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Negative);
+            }
+        }
+
+        Button {
+            text: "锐化";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.Sharpen);
+            }
+        }
+
+        Button {
+            text: "横百叶";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.H_Shades);
+            }
+        }
+        Button {
+            text: "竖百叶";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.S_Shades);
+            }
+        }
+        Button {
             id: quit;
             text: "退出";
             onClicked: {
