@@ -194,10 +194,11 @@ static void _soften(QString sourceFile, QString destFile)
     {
         for(int j = 1; j < yLimit; j++)
         {
+            double sarea = 16.0;
             r = 0;
             g = 0;
             b = 0;
-            for(int m = 0; m < 9; m++)
+            for(int m = 0; m < sarea; m++)
             {
                 int s = 0;
                 int p = 0;
@@ -245,9 +246,9 @@ static void _soften(QString sourceFile, QString destFile)
                 b += qBlue(color);
             }
 
-            r = (int) (r / 9.0);
-            g = (int) (g / 9.0);
-            b = (int) (b / 9.0);
+            r = (int) (r / sarea);
+            g = (int) (g / sarea);
+            b = (int) (b / sarea);
 
             r = qMin(255, qMax(0, r));
             g = qMin(255, qMax(0, g));

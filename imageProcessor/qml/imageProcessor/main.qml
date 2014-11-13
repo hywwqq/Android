@@ -99,6 +99,8 @@ Rectangle {
             text: "打开";
             onClicked: {
                 fileDialog.visible = true;
+                fileDialog.selectedNameFilter = fileDialog.nameFilters[1];
+                fileDialog.open();
             }
             style: btnStyle;
             z: 1;
