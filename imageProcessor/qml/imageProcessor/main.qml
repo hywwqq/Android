@@ -5,6 +5,7 @@ import an.qt.ImageProcessor 1.0
 import QtQuick.Controls.Styles 1.1
 
 Rectangle {
+    id: rectangle1
     width: 640;
     height: 480;
     Image {
@@ -30,9 +31,15 @@ Rectangle {
     Image {
         objectName: "imageViewer";
         id: imageViewer;
+//        sourceSize.width: 400
+//        sourceSize.height: 600
+        fillMode: Image.PreserveAspectFit
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        anchors.top: parent.top
         asynchronous: true;
-        anchors.fill: parent;
-        fillMode: Image.PreserveAspectFit;
         onStatusChanged: {
             if (imageViewer.status === Image.Loading) {
                 busy.running = true;
@@ -60,8 +67,9 @@ Rectangle {
         id: fileDialog;
         title: "Please choose a file";
         nameFilters: ["Image Files (*.jpg *.png *.gif)"];
+//        FileDialog.favoriteFolders: mnt/sdcard ;
         onAccepted: {
-            console.log(fileDialog.fileUrl);
+           //console.log(fileDialog.fileUrl);
             imageViewer.source = fileDialog.fileUrl;
         }
     }
@@ -84,12 +92,14 @@ Rectangle {
     }
     Grid {
         id: op;
+        anchors.left: parent.left;
+        anchors.leftMargin: 4;
         anchors.right: parent.right;
         anchors.rightMargin: 4;
         anchors.top:  parent.top;
         anchors.topMargin: 4;
-        rows: 10;
-        columns: 1;
+        rows: 2;
+        //columns: 10;
         rowSpacing: 4;
         columnSpacing: 4;
         z: 1;
@@ -121,6 +131,14 @@ Rectangle {
             onClicked: {
                 busy.running = true;
                 processor.process(fileDialog.fileUrl, ImageProcessor.Gray);
+            }
+        }
+        Button {
+            text: "横百叶";
+            style: btnStyle;
+            onClicked: {
+                busy.running = true;
+                processor.process(fileDialog.fileUrl, ImageProcessor.H_Shades);
             }
         }
 
@@ -159,14 +177,7 @@ Rectangle {
             }
         }
 
-        Button {
-            text: "横百叶";
-            style: btnStyle;
-            onClicked: {
-                busy.running = true;
-                processor.process(fileDialog.fileUrl, ImageProcessor.H_Shades);
-            }
-        }
+
         Button {
             text: "竖百叶";
             style: btnStyle;
